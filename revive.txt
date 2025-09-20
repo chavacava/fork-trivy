@@ -1,0 +1,5 @@
+../../../chavacava/github/deleteme/trivy/pkg/fanal/analyzer/analyzer.go:445:3: replace wg.Add()...go {...wg.Done()...} with wg.Go(...)
+../../../chavacava/github/deleteme/trivy/pkg/iac/scanners/cloudformation/parser/fn_ref.go:27:2: inefficient lookup of map key
+../../../chavacava/github/deleteme/trivy/pkg/iac/scanners/cloudformation/parser/fn_ref.go:47:2: inefficient lookup of map key
+../../../chavacava/github/deleteme/trivy/pkg/iac/scanners/cloudformation/parser/intrinsics.go:63:2: inefficient lookup of map key
+../../../chavacava/github/deleteme/trivy/pkg/iac/terraform/resource_block.go:37:2: inefficient lookup of map key
