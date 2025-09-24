@@ -105,6 +105,7 @@ linters:
         - name: indent-error-flow
           arguments:
             - preserve-scope
+        - name: inefficient-map-lookup
         - name: range
         - name: range-val-address
         - name: superfluous-else
@@ -114,7 +115,7 @@ linters:
         - name: unnecessary-stmt
         - name: unused-parameter
         - name: use-any
-
+        - name: use-waitgroup-go
     staticcheck:
       checks:
         - all
