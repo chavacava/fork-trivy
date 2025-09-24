@@ -60,12 +60,8 @@ func IsIntrinsicFunc(node *yaml.Node) bool {
 }
 
 func IsIntrinsic(key string) bool {
-	for tag := range intrinsicFuncs {
-		if tag == key {
-			return true
-		}
-	}
-	return false
+	_, ok := intrinsicFuncs[key]
+	return ok
 }
 
 func ResolveIntrinsicFunc(property *Property) (*Property, bool) {
