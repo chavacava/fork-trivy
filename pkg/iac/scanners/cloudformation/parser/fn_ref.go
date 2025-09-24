@@ -23,14 +23,9 @@ func ResolveReference(property *Property) (resolved *Property, success bool) {
 		return property, false
 	}
 
-	var param *Parameter
-	for k := range property.ctx.Parameters {
-		if k != refValue {
-			continue
-		}
-		param = property.ctx.Parameters[k]
+	param, ok := property.ctx.Parameters[refValue]
+	if ok {
 		resolvedType := param.Type()
-
 		switch param.Default().(type) {
 		case bool:
 			resolvedType = cftypes.Bool
@@ -44,12 +39,10 @@ func ResolveReference(property *Property) (resolved *Property, success bool) {
 		return resolved, true
 	}
 
-	for k := range property.ctx.Resources {
-		if k == refValue {
-			res := property.ctx.Resources[k]
-			resolved = property.deriveResolved(cftypes.String, res.ID())
-			break
-		}
+	res, ok := property.ctx.Resources[refValue]
+	if ok {
+		resolved = property.deriveResolved(cftypes.String, res.ID())
 	}
+
 	return resolved, true
 }
