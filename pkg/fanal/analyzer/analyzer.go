@@ -442,11 +442,9 @@ func (ag AnalyzerGroup) AnalyzeFile(ctx context.Context, wg *sync.WaitGroup, lim
 		if err = limit.Acquire(ctx, 1); err != nil {
 			return xerrors.Errorf("semaphore acquire: %w", err)
 		}
-		wg.Add(1)
 
-		go func(a analyzer, rc xio.ReadSeekCloserAt) {
+		wg.Go(func() {
 			defer limit.Release(1)
-			defer wg.Done()
 			defer rc.Close()
 
 			ret, err := a.Analyze(ctx, AnalysisInput{
@@ -461,7 +459,7 @@ func (ag AnalyzerGroup) AnalyzeFile(ctx context.Context, wg *sync.WaitGroup, lim
 				return
 			}
 			result.Merge(ret)
-		}(a, rc)
+		})
 	}
 
 	return nil
