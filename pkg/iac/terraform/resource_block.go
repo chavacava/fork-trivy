@@ -34,12 +34,8 @@ func NewPlanBlock(blockType, resourceType, resourceName string) *PlanBlock {
 }
 
 func (rb *PlanBlock) HasAttribute(attribute string) bool {
-	for k := range rb.Attributes {
-		if k == attribute {
-			return true
-		}
-	}
-	return false
+	_, ok := rb.Attributes[attribute]
+	return ok
 }
 
 func (rb *PlanBlock) ToHCL() string {
